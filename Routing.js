@@ -200,6 +200,33 @@ const rutes = {
 
 
                 }
+
+
+
+                this.completarSopa();
+            },
+
+
+
+            completarSopa: function(){
+
+              for(i =0; i < this.compartides.tamanySopa; i++){
+                for(x =0; x < this.compartides.tamanySopa; x++ ){
+                   if(this.compartides.sopa[i][x]==null){
+                  var lletra = Math.floor(Math.random() * (this.compartides.abc.length-1 -0)+0);
+                  console.log("lletra ["+lletra+"] "+this.compartides.abc[lletra] );
+                  console.log("i "+i );
+                  console.log("x "+x );
+                  console.log(this.compartides.sopa);
+                  this.compartides.sopa[i][x]= this.compartides.abc[lletra];
+                }
+                }
+               
+                    
+
+                
+              }
+
             },
 
 
