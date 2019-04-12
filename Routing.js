@@ -5,12 +5,16 @@ const escriureParaules = {
     <div >
     <p>
         <strong>Introdueix 3 paraules per a la sopa</strong>
+        <p><em>Pots introduir paraules i escollir "Sopa de lletres"
+          o bé, clicar a "Sopa de lletres" directament i jugar amb
+          paraules del sistema
+        </em></p>
     </p>
    
         Primera paraula: <input type="text" id="p1"><br><br>
         Segona paraula: <input type="text" id="p2"><br><br>
         Tercera paraula: <input type="text" id="p3"><br><br>
-        <a href="#/sopa" v-on:click="crearSopa" id="jugar">Jugar</a>
+        
 
     
     </div>
@@ -34,7 +38,7 @@ RUTES
 */
 const rutes = {
     '#/': escriureParaules,
-    '#/sopa': sopa,
+    '#/sopa': sopa
 };
 
 
@@ -49,9 +53,8 @@ const rutes = {
   var app = new Vue({
     el: '#app',
     data: {
-        vistaMenu: true,
         rutaActual: window.location.hash,
-        rutes: rutes,
+        rutes: rutes
     },
 
     methods:{
@@ -76,7 +79,11 @@ const rutes = {
                 var p2 = document.getElementById("p2");
                 var p3 = document.getElementById("p3");
 
+
+
                 var paraules =  [p1.value , p2.value, p3.value];
+
+                paraules = ["Marc", "Jordi", "Abracadabra"];
                 
                 var t = [paraules[0].length,paraules[1].length, paraules[2].length];
 
@@ -88,43 +95,54 @@ const rutes = {
 
                 
 
+               
+
 
                this.campsDisponibles(totalLletres);
                 console.log(dadesCompartides.dispo);
 
           
-                this.vistaMenu = !this.vistaMenu;
+                
                 
             
-                console.log(this.vistaMenu);
+               
+            },
+
+
+            clicmenu: function($event){
+              this.rutaActual = $event.target.hash;
             }
     },
 
 
     computed: {
         vistaActual: function() {
-          alert("ruta "+this.rutaActual);
-          return this.rutes[this.rutaActual] || this.rutes['#/'];
+          console.log("ruta "+this.rutaActual);
+          return this.rutes[this.rutaActual] || escriureParaules;
         }
       },
 
     template: `
     <div>
-    <div v-show="vistaMenu">
-    <p>
-        <strong>Introdueix 3 paraules per a la sopa</strong>
-    </p>
-   
-        Primera paraula: <input type="text" id="p1"><br><br>
-        Segona paraula: <input type="text" id="p2"><br><br>
-        Tercera paraula: <input type="text" id="p3"><br><br>
-        <button v-on:click="crearSopa" id="jugar">Jugar</button>
 
-    
-    </div>
+    <ul>
+        <li>
+          <a href="#/" 
+            v-on:click="clicmenu">
+              Menú incial
+          </a>
+        </li>
+        <li>
+          <a href="#/sopa" 
+            v-on:click="clicmenu">
+              Sopa de lletres
+          </a>
+        </li>
+      </ul>
 
-   
-    <componentPropi v-show="vistaMenu == false">Sopa</componentPropi>
+      <div v-bind:is="vistaActual">        
+      </div>
+        
     </div>
     
 
