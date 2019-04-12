@@ -119,6 +119,12 @@ const rutes = {
                    */
                   if(this.compartides.horitzontal){
                     this.obtenirFila();
+                    console.warn("HORITZONTAL");
+                    console.log("Paraula "+this.compartides.paraula);
+                    console.log("Fila "+this.compartides.fila);
+                    console.log("Columna "+this.compartides.columna);
+                    console.log("Mostra? "+this.compartides.mostra);
+                    console.log("Esapis disponibles "+this.compartides.espaisDisponiblesParaula);
                     console.log("Fila "+this.compartides.fila);
                     this.esPotMostrar();
 
@@ -130,16 +136,25 @@ const rutes = {
                         this.esPotMostrar();
 
                         
-                      }while(this.compartides.mostra);
+                      }while(!this.compartides.mostra && this.compartides.espaisDisponiblesParaula == this.compartides.tamanyParaula);
                     }
                      
                       
                       this.dibuixarParaula();
 
+                      this.compartides.espaisDisponiblesParaula = 0;
+                      
 
-                      console.log("horitzxontal");
-                      console.log(this.compartides.paraula);
-                      console.log(this.compartides.mostra);
+
+                      console.warn("HORITZONTAL");
+                      console.log("POST Paraula "+this.compartides.paraula);
+                      console.log("POST Fila "+this.compartides.fila);
+                      console.log("POST Columna "+this.compartides.columna);
+                      console.log("POST Mostra? "+this.compartides.mostra);
+                      console.log("POST Esapis disponibles "+this.compartides.espaisDisponiblesParaula);
+                      console.log("POST Fila "+this.compartides.fila);
+
+                      this.compartides.mostra= false;
 
                       
 
@@ -170,13 +185,15 @@ const rutes = {
                         console.log("this.compartides.espaisDisponiblesParaula "+this.compartides.espaisDisponiblesParaula);
                         console.log("this.compartides.tamanyParaula "+this.compartides.tamanyParaula);
                         
-                      }while(this.compartides.mostra);
+                      }while(!this.compartides.mostra && this.compartides.espaisDisponiblesParaula == this.compartides.tamanyParaula);
                     }
                       
                       this.dibuixarParaula();
                       console.log("vertical");
                       console.log(this.compartides.paraula);
                       console.log(this.compartides.mostra);
+                      this.compartides.mostra= false;
+                      this.compartides.espaisDisponiblesParaula = 0;
                   }
 
                    
@@ -200,6 +217,10 @@ const rutes = {
 
               else{
                 for(x=this.compartides.fila; x< this.compartides.fila+this.compartides.tamanyParaula; x++){
+                  console.warn(this.compartides.sopa);
+                  console.warn("fila: "+x);
+                  console.warn("columna: "+this.compartides.columna);
+                  console.warn("lletra: ["+i+"]"+this.compartides.paraula[i]);
                  
                   this.compartides.sopa[x][this.compartides.columna] = this.compartides.paraula[i++];
               
@@ -240,15 +261,23 @@ const rutes = {
 
                   switch(this.compartides.sopa[this.compartides.fila][i]){
                     case null:
-                    this.espaisDisponiblesParaula= 0;
-                    this.compartides.mostra = false;
+                     
+                    this.compartides.espaisDisponiblesParaula++;
+                      this.compartides.mostra = true;
+                      console.log("es pot null espais disponibles["+this.compartides.fila+"]["+i+"]"+this.compartides.espaisDisponiblesParaula);
+                      console.log("es pot null MOSTRA?["+this.compartides.fila+"]["+i+"]"+this.compartides.mostra);
+                    
 
 
                       
                       break;
                     default:
-                    this.compartides.espaisDisponiblesParaula++;
-                      this.compartides.mostra = true;
+                    
+                    this.compartides.espaisDisponiblesParaula= 0;
+                    this.compartides.mostra = false;
+                    this.compartides.columna = i+1;
+                    console.log("es pot OCUPAT espais disponibles["+this.compartides.fila+"]["+i+"]"+this.compartides.espaisDisponiblesParaula);
+                    console.log("es pot OCUPAT MOSTRA?["+this.compartides.fila+"]["+i+"]"+this.compartides.mostra);
                     
                       break;
 
@@ -259,17 +288,21 @@ const rutes = {
 
               else{
                 for(var i = 0; i< this.compartides.tamanySopa; i++){
-                    console.log("Columna lliure: "+this.compartides.dispo[i][this.compartides.columna]);
+                    console.log("Columna lliure: "+this.compartides.sopa[i][this.compartides.columna]);
                   switch(this.compartides.sopa[i][this.compartides.columna]){
                     case null:
-                    this.espaisDisponiblesParaula= 0;
-                    this.compartides.mostra = false;
+                    this.compartides.espaisDisponiblesParaula++;
+                    this.compartides.mostra = true;
+                   
                    
                       break;
                     default:
 
-                    this.compartides.espaisDisponiblesParaula++;
-                    this.compartides.mostra = true;
+                    this.compartides.espaisDisponiblesParaula= 0;
+                    this.compartides.files = i+1;
+                    this.compartides.mostra = false;
+
+                    
                     
                       break;
 
