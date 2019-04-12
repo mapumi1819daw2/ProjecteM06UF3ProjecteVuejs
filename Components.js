@@ -13,6 +13,8 @@ Vue.component('ComponentPropi', {
   });
 
 
+
+  /* Component taula */
   Vue.component('Taula', {
     computed: {
       pilots: function() {
@@ -29,28 +31,25 @@ Vue.component('ComponentPropi', {
     `
   });
   
+
+  /* Component Fila */
   Vue.component('Fila', {
-    props: {
-      pilot: {
-        type: Object
-      }
-    },
+    
     template: `
-      <li>
-        <h3>Nom: <small>{{pilot.name}}</small></h3>
-      </li>
+      <tr></tr>
     `
   });
 
+
+
+  /* Component lletra */
   Vue.component('lletra', {
-    computed: {
-      pilots: function() {
-        return this.$store.state.pilots;
-      }
-    },
+
+    props: ['lletra'],
+    
     template: `
         
-          <td> v-for="pilot in pilots" v-bind:key="pilot.url" v-bind:pilot="pilot" />
+          <td>{{lletra}}</td>
        
     `
   });
