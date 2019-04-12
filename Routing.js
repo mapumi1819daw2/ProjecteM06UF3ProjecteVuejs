@@ -23,10 +23,7 @@ const escriureParaules = {
   }
   
 
-  let dadesCompartides = {
-      dispo : [] //Llocs disponibles
-
-  };
+  
 
 
 
