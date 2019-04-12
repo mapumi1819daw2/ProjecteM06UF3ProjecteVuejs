@@ -7,7 +7,7 @@ Vue.component('ComponentPropi', {
     props: ['text2'],
     template: `
     <div>
-      <h2 v-for>aaaaaaaaaaa</h2>
+      <h2>aaaaaaaaaaa</h2>
     </div>
     `
   });

@@ -49,6 +49,7 @@ const rutes = {
   var app = new Vue({
     el: '#app',
     data: {
+        vistaMenu: true,
         rutaActual: window.location.hash,
         rutes: rutes,
     },
@@ -69,7 +70,7 @@ const rutes = {
 
 
         /* Obtenim paraules i creem sopa de lletres */
-            crearSopa : function ($event){
+            crearSopa : function (){
                 var abc  =["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z"];
                 var p1 = document.getElementById("p1");
                 var p2 = document.getElementById("p2");
@@ -91,21 +92,41 @@ const rutes = {
                this.campsDisponibles(totalLletres);
                 console.log(dadesCompartides.dispo);
 
-                this.rutaActual = $event.target.hash;
-                location.reload(true);
-
+          
+                this.vistaMenu = !this.vistaMenu;
+                
+            
+                console.log(this.vistaMenu);
             }
     },
 
 
     computed: {
         vistaActual: function() {
+          alert("ruta "+this.rutaActual);
           return this.rutes[this.rutaActual] || this.rutes['#/'];
         }
       },
 
     template: `
-    <div v-bind:is="vistaActual">        
+    <div>
+    <div v-show="vistaMenu">
+    <p>
+        <strong>Introdueix 3 paraules per a la sopa</strong>
+    </p>
+   
+        Primera paraula: <input type="text" id="p1"><br><br>
+        Segona paraula: <input type="text" id="p2"><br><br>
+        Tercera paraula: <input type="text" id="p3"><br><br>
+        <button v-on:click="crearSopa" id="jugar">Jugar</button>
+
+    
     </div>
+
+   
+    <componentPropi v-show="vistaMenu == false">Sopa</componentPropi>
+    </div>
+    
+
         `
 });
