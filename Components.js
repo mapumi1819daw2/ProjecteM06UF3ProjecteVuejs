@@ -1,13 +1,9 @@
 Vue.component('ComponentPropi', {
-    data: function() {
-      return {
-        text: 'DAW2'
-      };
-    },
-    props: ['text2'],
+    
+    props: ['text'],
     template: `
     <div>
-      <h2>aaaaaaaaaaa</h2>
+      <a>{{text}}</a>
     </div>
     `
   });

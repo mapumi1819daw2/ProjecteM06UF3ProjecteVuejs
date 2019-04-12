@@ -55,18 +55,20 @@ const rutes = {
 
     methods:{
             /* Inicialitzem array de caselles disponibles */
-            campsDisponibles : function(num){  
+            inicialitzarCampsDisponibles : function(num){  
                 for(var i = 0; i< num; i++){
+                  this.compartides.sopa[i]= [];
                   this.compartides.dispo[i]= [];
                 }
                 
                 for(var i = 0; i <num; i++){
                   for(var x =0; x< num; x++){
+                    this.compartides.sopa[i].push(null);
                     this.compartides.dispo[i].push(true);
                   }
                   
                 }
-                console.log(this.compartides.dispo);
+               
                    
             },
 
@@ -90,14 +92,77 @@ const rutes = {
 
 
             distribuirParaules: function(){
-                var qLletres = 0;
+               
                 for(var i=0; i<this.compartides.paraules.length; i++ ){
 
-                  var paraula = this.split(this.compartides.paraules[i]);
-                  qLletres = paraula.length;
+                  this.compartides.paraula = this.split(this.compartides.paraules[i]);
+                 
+                  this.compartides.tamanyParaula = this.compartides.tamanyParaules[i];
+                   console.log(this.compartides.tamanyParaula);
+                   this.obtenirOrientacio();
+                  // console.log("Horitzontal? "+this.compartides.horitzontal);
+
+                   
                   
-                    console.log(qLletres);
+                   
+
+                  /* HORITZONTAL */
+                  if(this.compartides.horitzontal){
+                    this.obtenirFila();
+                    console.log("Fila "+this.compartides.fila);
+                    this.esPotMostrar();
+
+                  //  console.log("Es pot horitzontal:" +this.compartides.mostra);
+                    if(!this.compartides.mostra){
+
+                      do{
+                        this.obtenirFila();
+                        this.esPotMostrar();
+
+                        console.log("aa");
+                      }while(this.compartides.mostra && this.compartides.espaisDisponiblesParaula);
+                    }
+                      console.log("bb");
+                      
+                      this.dibuixarParaula();
+
+                      
+
+                 
+                  }
+
+                  else{
+                    this.obtenirColumna();
+                    this.esPotMostrar();
+                    console.log("Es pot vertical:" +this.compartides.mostra);
+                  }
+
+                   
+
+
                 }
+            },
+
+
+            dibuixarParaula: function(){
+              var i =0;
+
+              var q = 0;
+              if(this.compartides.horitzontal){
+                for(x=this.compartides.columna; x< this.compartides.columna+this.compartides.tamanyParaula; x++){
+                  //if(this.compartides.tamanyParaula!= q){
+                    this.compartides.sopa[this.compartides.fila][x] = this.compartides.paraula[i++];
+                  //  q++;
+                //  }
+                //  else{
+                 //   this.compartides.sopa[this.compartides.fila][x] = null;
+                //  }
+                }
+              }
+
+             
+              
+
             },
 
             /* Obtenim les lletres de la paraula */
@@ -107,13 +172,58 @@ const rutes = {
 
             obtenirFila: function (){
 
-              Math.floor(Math.random() * this.compartides.tamanySopa-1);
+              this.compartides.fila = Math.floor(Math.random() * (this.compartides.tamanySopa-1 -0)+0);
 
             },
 
 
             obtenirColumna: function(){
-              Math.floor(Math.random() * this.compartides.tamanySopa-1);
+              this.compartides.columna = Math.floor(Math.random() * (this.compartides.tamanySopa-1 -0)+0);
+            },
+
+
+            obtenirOrientacio: function(){
+                this.compartides.horitzontal = !this.compartides.horitzontal;
+              
+            },
+
+
+            esPotMostrar: function(){
+
+              if(this.compartides.horitzontal){
+                for(var i = 0; i< this.compartides.tamanySopa; i++){
+
+                  switch(this.compartides.dispo[this.compartides.fila][i]){
+                    case true:
+                      this.compartides.espaisDisponiblesParaula++;
+                      this.compartides.mostra = true;
+                      break;
+                    default:
+                    this.espaisDisponiblesParaula= 0;
+                    this.compartides.mostra = false;
+                      break;
+
+                  }
+
+                }
+              }
+
+              else{
+                for(var i = 0; i< this.compartides.tamanySopa; i++){
+                    console.log("Columna lliure: "+this.compartides.dispo[i][this.compartides.columna]);
+                  switch(this.compartides.dispo[i][this.compartides.columna]){
+                    case true:
+                      this.compartides.mostra = true;
+                      break;
+                    default:
+                    this.compartides.mostra = false;
+                      break;
+
+                  }
+
+                }
+              }
+
             },
 
 
@@ -140,9 +250,12 @@ const rutes = {
                 this.compartides.tamanySopa *=2;
                 var num = this.compartides.tamanySopa;
 
-               this.campsDisponibles(num);
+               this.inicialitzarCampsDisponibles(num);
 
                this.distribuirParaules();
+
+
+               console.log(this.compartides.sopa);
 
 
                
