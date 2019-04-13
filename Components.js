@@ -41,10 +41,16 @@ Vue.component('ComponentPropi', {
         <table>
 
         <tbody>
-        <Fila v-for="lletra in lletres">
-        </Fila>
+
+        <tr v-for="lletra in lletres">
+
+
+
+          
+          <Fila v-for="l in lletra" v-bind:lletre="l"></Fila>
+          
+        </tr>
         </tbody>
-        
         </table>
         
           
@@ -57,16 +63,21 @@ Vue.component('ComponentPropi', {
   /* Component Fila */
   Vue.component('Fila', {
 
-    props:{
+    /* props:{
       lletres: Array,
       lletra: String,
+    },
+ */
+    props: {
+      lletre: String,
     },
     
     template: `
 
-      <a>
-      <tr v-for="lletres in lletra"></tr>
-      </a>
+      <td>{{lletre}}</td>
+
+
+     
       
     `
   });
@@ -74,7 +85,7 @@ Vue.component('ComponentPropi', {
 
 
   /* Component lletra */
-  Vue.component('lletra', {
+/*   Vue.component('lletra', {
 
     props: ['lletra'],
     
@@ -83,4 +94,4 @@ Vue.component('ComponentPropi', {
           <td>{{lletra}}</td>
        
     `
-  });
+  }); */
