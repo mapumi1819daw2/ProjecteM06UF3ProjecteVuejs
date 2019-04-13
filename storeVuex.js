@@ -7,6 +7,10 @@ var store = new Vuex.Store({
         lletra: null,
         fila: 0,
         columna: 0,
+        lletresClicades: [],
+        lletraSeleccionada: function (){
+                alert("a");
+        },
     },
 
 
@@ -26,6 +30,10 @@ var store = new Vuex.Store({
 
         setColumna: function(state, payload){
             state.columna = payload.columna;
+        },
+
+        setLletraSeleccionada: function(state, payload){
+            state.lletraSeleccionada;
         },
 
         
@@ -57,6 +65,11 @@ var store = new Vuex.Store({
         setColumna: function(context, payload){
             context.commit('setColumna', {sopa: payload.columna});
         },
+
+
+        setLletraSeleccionada: function(context, payload){
+            context.commit('setLletraSeleccionada');
+        }
 
     },
 

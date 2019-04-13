@@ -3,7 +3,10 @@
 const escriureParaules = {
 
     template: `
+    
     <div >
+
+    
     <p>
         <strong>Introdueix 3 paraules per a la sopa</strong>
         <p><em>Pots introduir paraules i escollir "Sopa de lletres"
@@ -15,10 +18,13 @@ const escriureParaules = {
         Primera paraula: <input type="text" id="p1"><br><br>
         Segona paraula: <input type="text" id="p2"><br><br>
         Tercera paraula: <input type="text" id="p3"><br><br>
+
+        
         
 
     
     </div>
+ 
     `
   };
 
@@ -28,7 +34,7 @@ const escriureParaules = {
 
     
     
-    template: `<Taula></Taula>`
+    template: `<Taula v-on:lletra-seleccionada="lletraSeleccionada"></Taula>`
   }
 
   /* 
@@ -125,14 +131,14 @@ const rutes = {
                    */
                   if(this.compartides.horitzontal){
                     this.obtenirFila();
-                    console.warn("HORITZONTAL");
+                   /*  console.warn("HORITZONTAL");
                     console.log("Paraula "+this.compartides.paraula);
                     console.log("Fila "+this.compartides.fila);
                     console.log("Columna "+this.compartides.columna);
                     console.log("Mostra? "+this.compartides.mostra);
                     console.log("Esapis disponibles "+this.compartides.espaisDisponiblesParaula);
                     console.log("Fila "+this.compartides.fila);
-                    this.esPotMostrar();
+                    this.esPotMostrar(); */
 
                   //  console.log("Es pot horitzontal:" +this.compartides.mostra);
                     if(!this.compartides.mostra){
@@ -152,13 +158,13 @@ const rutes = {
                       
 
 
-                      console.warn("HORITZONTAL");
+                      /* console.warn("HORITZONTAL");
                       console.log("POST Paraula "+this.compartides.paraula);
                       console.log("POST Fila "+this.compartides.fila);
                       console.log("POST Columna "+this.compartides.columna);
                       console.log("POST Mostra? "+this.compartides.mostra);
                       console.log("POST Esapis disponibles "+this.compartides.espaisDisponiblesParaula);
-                      console.log("POST Fila "+this.compartides.fila);
+                      console.log("POST Fila "+this.compartides.fila); */
 
                       this.compartides.mostra= false;
 
@@ -186,18 +192,18 @@ const rutes = {
                       do{
                         this.obtenirColumna();
                         this.esPotMostrar();
-                        console.log("vertical");
+                        /* console.log("vertical");
                         console.log(this.compartides.mostra);
                         console.log("this.compartides.espaisDisponiblesParaula "+this.compartides.espaisDisponiblesParaula);
-                        console.log("this.compartides.tamanyParaula "+this.compartides.tamanyParaula);
+                        console.log("this.compartides.tamanyParaula "+this.compartides.tamanyParaula); */
                         
                       }while(!this.compartides.mostra && this.compartides.espaisDisponiblesParaula == this.compartides.tamanyParaula);
                     }
                       
                       this.dibuixarParaula();
-                      console.log("vertical");
+                      /* console.log("vertical");
                       console.log(this.compartides.paraula);
-                      console.log(this.compartides.mostra);
+                      console.log(this.compartides.mostra); */
                       this.compartides.mostra= false;
                       this.compartides.espaisDisponiblesParaula = 0;
                   }
@@ -220,10 +226,10 @@ const rutes = {
                 for(x =0; x < this.compartides.tamanySopa; x++ ){
                    if(this.compartides.sopa[i][x]==null){
                   var lletra = Math.floor(Math.random() * (this.compartides.abc.length-1 -0)+0);
-                  console.log("lletra ["+lletra+"] "+this.compartides.abc[lletra] );
+                 /*  console.log("lletra ["+lletra+"] "+this.compartides.abc[lletra] );
                   console.log("i "+i );
                   console.log("x "+x );
-                  console.log(this.compartides.sopa);
+                  console.log(this.compartides.sopa); */
                   this.compartides.sopa[i][x]= this.compartides.abc[lletra];
                 }
                 }
@@ -250,10 +256,10 @@ const rutes = {
 
               else{
                 for(x=this.compartides.fila; x< this.compartides.fila+this.compartides.tamanyParaula; x++){
-                  console.warn(this.compartides.sopa);
+                  /* console.warn(this.compartides.sopa);
                   console.warn("fila: "+x);
                   console.warn("columna: "+this.compartides.columna);
-                  console.warn("lletra: ["+i+"]"+this.compartides.paraula[i]);
+                  console.warn("lletra: ["+i+"]"+this.compartides.paraula[i]); */
                  
                   this.compartides.sopa[x][this.compartides.columna] = this.compartides.paraula[i++];
               
@@ -297,8 +303,8 @@ const rutes = {
                      
                     this.compartides.espaisDisponiblesParaula++;
                       this.compartides.mostra = true;
-                      console.log("es pot null espais disponibles["+this.compartides.fila+"]["+i+"]"+this.compartides.espaisDisponiblesParaula);
-                      console.log("es pot null MOSTRA?["+this.compartides.fila+"]["+i+"]"+this.compartides.mostra);
+                      /* console.log("es pot null espais disponibles["+this.compartides.fila+"]["+i+"]"+this.compartides.espaisDisponiblesParaula);
+                      console.log("es pot null MOSTRA?["+this.compartides.fila+"]["+i+"]"+this.compartides.mostra); */
                     
 
 
@@ -309,9 +315,9 @@ const rutes = {
                     this.compartides.espaisDisponiblesParaula= 0;
                     this.compartides.mostra = false;
                     this.compartides.columna = i+1;
-                    console.log("es pot OCUPAT espais disponibles["+this.compartides.fila+"]["+i+"]"+this.compartides.espaisDisponiblesParaula);
+                   /*  console.log("es pot OCUPAT espais disponibles["+this.compartides.fila+"]["+i+"]"+this.compartides.espaisDisponiblesParaula);
                     console.log("es pot OCUPAT MOSTRA?["+this.compartides.fila+"]["+i+"]"+this.compartides.mostra);
-                    
+                     */
                       break;
 
                   }
@@ -352,7 +358,7 @@ const rutes = {
                /*  var p1 = document.getElementById("p1");
                 var p2 = document.getElementById("p2");
                 var p3 = document.getElementById("p3");
- */
+ */             emmagatzematge.desar();
 
 
                 //var paraules =  [p1.value , p2.value, p3.value];
@@ -361,7 +367,7 @@ const rutes = {
 
                 this.paraulesMajuscules();
 
-                console.log(this.compartides.paraules);
+               /*  console.log(this.compartides.paraules); */
                 
                 this.compartides.tamanyParaules = [this.compartides.paraules[0].length,this.compartides.paraules[1].length, this.compartides.paraules[2].length];
                 
@@ -375,7 +381,7 @@ const rutes = {
                this.distribuirParaules();
 
 
-               console.log(this.compartides.sopa);
+               /* console.log(this.compartides.sopa); */
 
 
 
@@ -400,6 +406,12 @@ const rutes = {
               this.$store.dispatch({type: 'setTamanySopa', tamanySopa: this.compartides.tamanySopa });
               this.$store.dispatch({type: 'setSopa', sopa: this.compartides.sopa });
             },
+
+            lletraSeleccionada: function (){
+              alert("a");
+            },
+
+
     },
 
 
@@ -428,9 +440,11 @@ const rutes = {
         </li>
       </ul>
 
+
+      <transition name="fade">
       <div v-bind:is="vistaActual">        
       </div>
-        
+        </transition>
     </div>
     
 

@@ -4,6 +4,23 @@
     <title>Sopa de lletres MP</title>
     <meta name="author" content="marc">
     <meta charset="UTF-8">
+
+    <style>
+        .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+        table, th, td {
+        border: 1px solid black;
+        }
+
+        td{
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 
@@ -12,6 +29,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vuex"></script> <!-- MAGATZEM -->
+    <script src="webStorage.js"></script>
     <script src="storeVuex.js"></script>
     <script src="dades.js"></script>
     <script src="Components.js"></script>

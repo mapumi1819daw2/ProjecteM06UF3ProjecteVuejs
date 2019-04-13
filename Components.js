@@ -44,8 +44,6 @@ Vue.component('ComponentPropi', {
 
         <tr v-for="lletra in lletres">
 
-
-
           
           <Fila v-for="l in lletra" v-bind:lletre="l"></Fila>
           
@@ -70,11 +68,14 @@ Vue.component('ComponentPropi', {
  */
     props: {
       lletre: String,
+      
     },
+
+    store,
     
     template: `
 
-      <td>{{lletre}}</td>
+      <td v-on:click.stop="this.$store.dispatch({type: 'setLletraSeleccionada' });">{{lletre}}</td>
 
 
      
