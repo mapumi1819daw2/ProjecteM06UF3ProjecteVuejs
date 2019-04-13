@@ -24,7 +24,11 @@ const escriureParaules = {
 
 //Ruta sopa
   const sopa ={
-    template: `<ComponentPropi>Sopa</ComponentPropi>`
+
+
+    
+    
+    template: `<Taula></Taula>`
   }
 
   /* 
@@ -52,6 +56,8 @@ const rutes = {
         rutes: rutes,
         compartides: dadesCompartides,
     },
+
+    store,
 
     methods:{
             /* Inicialitzem array de caselles disponibles */
@@ -372,6 +378,14 @@ const rutes = {
                console.log(this.compartides.sopa);
 
 
+
+
+
+               /* Actualitzem estat del store */
+              this.actualitzaEstatStore();
+
+
+
                
             },
 
@@ -379,7 +393,13 @@ const rutes = {
             clicmenu: function($event){
               this.crearSopa();
               this.rutaActual = $event.target.hash;
-            }
+            },
+
+
+            actualitzaEstatStore: function(){
+              this.$store.dispatch({type: 'setTamanySopa', tamanySopa: this.compartides.tamanySopa });
+              this.$store.dispatch({type: 'setSopa', sopa: this.compartides.sopa });
+            },
     },
 
 

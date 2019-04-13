@@ -12,16 +12,42 @@ Vue.component('ComponentPropi', {
 
   /* Component taula */
   Vue.component('Taula', {
+    
     computed: {
-      pilots: function() {
-        return this.$store.state.pilots;
-      }
+      lletres: function() {
+        return this.$store.state.sopa;
+      },
+      tamanySopa: function(){
+        return this.$store.state.tamanySopa;
+      },
+
+      sopa: function(){
+        return this.$store.state.sopa;
+      },
+
+      fila: function(){
+        return this.$store.state.fila;
+      },
+      columna: function(){
+        return this.$store.state.columna;
+      },
     },
+
     template: `
       <div>
         <h2>Sopa de lletres</h2>
+
+    
+        <table>
+
+        <tbody>
+        <Fila v-for="lletra in lletres">
+        </Fila>
+        </tbody>
         
-          <PilotItem v-for="pilot in pilots" v-bind:key="pilot.url" v-bind:pilot="pilot" />
+        </table>
+        
+          
        
       </div>
     `
@@ -30,9 +56,18 @@ Vue.component('ComponentPropi', {
 
   /* Component Fila */
   Vue.component('Fila', {
+
+    props:{
+      lletres: Array,
+      lletra: String,
+    },
     
     template: `
-      <tr></tr>
+
+      <a>
+      <tr v-for="lletres in lletra"></tr>
+      </a>
+      
     `
   });
 
