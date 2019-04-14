@@ -355,15 +355,20 @@ const rutes = {
 
         /* Obtenim paraules i creem sopa de lletres */
             crearSopa: function (){
-               /*  var p1 = document.getElementById("p1");
+                var p1 = document.getElementById("p1");
                 var p2 = document.getElementById("p2");
                 var p3 = document.getElementById("p3");
- */             emmagatzematge.desar();
+
+                
+                this.compartides.paraules = ["Marc", "Jordi", "Joan"];
+                
+               
+                emmagatzematge.desar();
 
 
                 //var paraules =  [p1.value , p2.value, p3.value];
 
-                this.compartides.paraules = ["Marc", "Jordi", "Joan"];
+                
 
                 this.paraulesMajuscules();
 
@@ -424,14 +429,17 @@ const rutes = {
 
     template: `
     <div>
-
+    
     <ul>
+    
         <li>
           <a href="#/" 
             v-on:click="clicmenu">
               Menú incial
           </a>
+          
         </li>
+       
         <li>
           <a href="#/sopa" 
             v-on:click="clicmenu">
@@ -439,6 +447,9 @@ const rutes = {
           </a>
         </li>
       </ul>
+
+     
+      
 
 
       <transition name="fade">
