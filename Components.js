@@ -1,3 +1,33 @@
+Vue.component('Info',{
+  data: function () {
+    return {
+      show: true,
+    }
+  },
+  template: `
+    <div>
+  <button v-on:click="show = !show">
+        <a v-if="show">
+          Oculta
+        </a>
+        <a v-else>
+          Mostra
+        </a>
+      </button>
+      <transition name="fade">
+  <p v-if="show">
+  <em>Pots introduir paraules i escollir "Sopa de lletres"
+          o bé, clicar a "Sopa de lletres" directament i jugar amb
+          paraules del sistema
+        </em></p>
+        </transition>
+
+        </div>
+  `
+});
+
+
+
 Vue.component('ComponentPropi', {
     
     props: ['text'],

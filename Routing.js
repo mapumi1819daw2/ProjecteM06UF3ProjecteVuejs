@@ -9,19 +9,18 @@ const escriureParaules = {
     
     <p>
         <strong>Introdueix 3 paraules per a la sopa</strong>
-        <p><em>Pots introduir paraules i escollir "Sopa de lletres"
-          o bé, clicar a "Sopa de lletres" directament i jugar amb
-          paraules del sistema
-        </em></p>
-    </p>
-   
+        </p>
+        
+       <Info></Info>
+      
+        
+    
+       <br><br>
+       
         Primera paraula: <input type="text" id="p1"><br><br>
         Segona paraula: <input type="text" id="p2"><br><br>
         Tercera paraula: <input type="text" id="p3"><br><br>
-
         
-        
-
     
     </div>
  
@@ -61,6 +60,7 @@ const rutes = {
         rutaActual: window.location.hash,
         rutes: rutes,
         compartides: dadesCompartides,
+        show: true,
     },
 
     store,
@@ -453,9 +453,17 @@ const rutes = {
 
 
       <transition name="fade">
-      <div v-bind:is="vistaActual">        
-      </div>
-        </transition>
+        <div  v-if="show">
+          <div v-bind:is="vistaActual">        
+          </div>
+        </div>
+      </transition>
+
+      <br><br>
+      <button v-on:click="show = !show">
+        Mostra/Oculta
+      </button>
+       
     </div>
     
 
